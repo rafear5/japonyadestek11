@@ -246,7 +246,7 @@ body.menu-open { overflow: hidden; }
 .others strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--accent); }
 .others span { font-size: 14px; color: var(--muted); }
 
-.ask { margin-top: 24px; grid-column: 1 / -1; }
+.ask { margin-top: 56px; grid-column: 1 / -1; }
 .ask h2 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 16px; }
 .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
 .choices a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.35; letter-spacing: -.01em; transition: border-color .3s ease, transform .4s var(--ease); }
