@@ -27,9 +27,7 @@
   /* ---------- Sabit WhatsApp düğmesi ---------- */
   var waFloat = $(".wa-float");
 
-  /* ---------- Kaydırma: üst çubuk, ilerleme çizgisi, 日本, paralaks ---------- */
-  var kanji = $(".kanji-bg");
-  var parImgs = reduce ? [] : $$(".shot img");
+  /* ---------- Kaydırma: üst çubuk, ilerleme çizgisi ---------- */
   var ticking = false;
 
   function frame() {
@@ -42,15 +40,6 @@
     }
     if (waFloat) waFloat.classList.toggle("show", y > 560);
     if (y < 300) $$(".nav-desktop a.active, .menu-panel a.active").forEach(function (a) { if (a.getAttribute("href").charAt(0) === "#") a.classList.remove("active"); });
-    if (!reduce) {
-      if (kanji) kanji.style.transform = "translate3d(0," + Math.round(y * 0.18) + "px,0)";
-      parImgs.forEach(function (img) {
-        var r = img.parentElement.getBoundingClientRect();
-        if (r.bottom < -80 || r.top > vh + 80) return;
-        var off = ((r.top + r.height / 2) - vh / 2) * -0.045;
-        img.style.transform = "translate3d(0," + off.toFixed(1) + "px,0) scale(1.14)";
-      });
-    }
   }
   function onScroll() { if (!ticking) { ticking = true; win.requestAnimationFrame(frame); } }
   win.addEventListener("scroll", onScroll, { passive: true });
@@ -158,34 +147,6 @@
         (par._shots = par._shots || []).push(el);
         io.observe(par);
       } else { io.observe(el); }
-    });
-  }
-
-  /* ---------- İmleci izleyen ışık ve kart vurgusu (yalnızca fare olan cihazlar) ---------- */
-  var fine = win.matchMedia && win.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (fine && !reduce) {
-    var glow = doc.createElement("div"); glow.className = "glow"; glow.setAttribute("aria-hidden", "true");
-    doc.body.appendChild(glow);
-    var gx = 0, gy = 0, tx = 0, ty = 0, raf = 0;
-    function loop() {
-      gx += (tx - gx) * 0.08; gy += (ty - gy) * 0.08;
-      glow.style.transform = "translate3d(" + gx.toFixed(1) + "px," + gy.toFixed(1) + "px,0)";
-      raf = (Math.abs(tx - gx) + Math.abs(ty - gy) > 0.5) ? win.requestAnimationFrame(loop) : 0;
-    }
-    doc.addEventListener("pointermove", function (e) {
-      tx = e.clientX; ty = e.clientY;
-      if (!glow.classList.contains("on")) { gx = tx; gy = ty; glow.classList.add("on"); }
-      if (!raf) raf = win.requestAnimationFrame(loop);
-    }, { passive: true });
-    doc.addEventListener("mouseleave", function () { glow.classList.remove("on"); });
-
-    $$(".card, .choices a, .others a").forEach(function (el) {
-      el.classList.add("spot");
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
-        el.style.setProperty("--my", (e.clientY - r.top) + "px");
-      });
     });
   }
 
