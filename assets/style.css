@@ -353,3 +353,23 @@ body.menu-open .wa-float { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   .ribbon { overflow-x: auto; }
 }
+
+/* Çerez bandı ve gizlilik sayfası */
+.cerez { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 90; width: min(440px, calc(100vw - 32px)); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: 0 14px 34px -14px rgba(37,37,37,.35); }
+.cerez-baslik { margin: 0 0 6px; font-weight: 600; font-size: 16px; }
+.cerez-metin { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.cerez-metin a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+.cerez-metin a:hover { border-bottom-color: var(--accent); }
+.cerez-butonlar { display: flex; gap: 10px; flex-wrap: wrap; }
+.cerez-butonlar .btn { min-height: 44px; padding: 0 20px; }
+@media (max-width: 480px) { .cerez-butonlar .btn { flex: 1 1 calc(50% - 5px); padding: 0 12px; } }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+footer .flinks { display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.legal { max-width: 760px; }
+.legal h2 { font-size: 22px; line-height: 1.3; margin: 36px 0 10px; letter-spacing: -.01em; }
+.legal p, .legal li { color: var(--muted); }
+.legal p { margin: 0 0 12px; }
+.legal ul { margin: 0 0 12px; padding-left: 22px; }
+.legal li { margin-bottom: 6px; }
+.legal strong { color: var(--fg); font-weight: 600; }
+.legal .tarih { font-size: 14px; }
